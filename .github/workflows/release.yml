@@ -17,10 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: '17'
@@ -29,7 +29,7 @@ jobs:
       # الإجراء الرسمي بتثبيت Gradle نفسه وإتاحته كأمر "gradle" مباشرة،
       # بدلاً من الاعتماد على غلاف (wrapper) غير موجود في المستودع.
       - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v6
         with:
           gradle-version: '8.7'
 
@@ -65,7 +65,7 @@ jobs:
           echo "path=$APK_PATH" >> "$GITHUB_OUTPUT"
 
       - name: Upload build artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: sp-studio-pro-release
           path: ${{ steps.apk.outputs.path }}
