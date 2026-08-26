@@ -2,6 +2,7 @@ name: Build and Release APK
 
 # يعمل هذا السير تلقائياً عند دفع وسم إصدار مثل v1.0.0،
 # أو يدوياً من تبويب Actions عبر workflow_dispatch.
+# في الحالتين سيتم إنشاء GitHub Release يحتوي على ملف الـ APK جاهز للتحميل.
 on:
   push:
     tags:
@@ -70,9 +71,23 @@ jobs:
           name: sp-studio-pro-release
           path: ${{ steps.apk.outputs.path }}
 
+      # يحدد اسم الوسم (tag) الذي سيُستخدم للإصدار:
+      # - إذا تم الدفع عبر وسم (v1.0.0 مثلاً) يُستخدم نفس الوسم.
+      # - إذا تم التشغيل يدوياً، يُنشأ وسم تلقائي فريد بالتاريخ ورقم التشغيل
+      #   حتى لا يتعارض مع أي إصدار سابق.
+      - name: Determine release tag
+        id: tag
+        run: |
+          if [[ "${{ github.ref }}" == refs/tags/* ]]; then
+            echo "tag_name=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
+          else
+            echo "tag_name=build-$(date +%Y%m%d-%H%M%S)-${{ github.run_number }}" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Create GitHub Release
-        if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ steps.tag.outputs.tag_name }}
+          name: ${{ steps.tag.outputs.tag_name }}
           files: ${{ steps.apk.outputs.path }}
           generate_release_notes: true
