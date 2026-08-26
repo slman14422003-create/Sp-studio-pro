@@ -34,15 +34,22 @@ jobs:
           gradle-version: '8.7'
 
       - name: Decode signing keystore (optional)
-        if: ${{ secrets.RELEASE_KEYSTORE_BASE64 != '' }}
         env:
           RELEASE_KEYSTORE_BASE64: ${{ secrets.RELEASE_KEYSTORE_BASE64 }}
+          RELEASE_STORE_PASSWORD_SECRET: ${{ secrets.RELEASE_STORE_PASSWORD }}
+          RELEASE_KEY_ALIAS_SECRET: ${{ secrets.RELEASE_KEY_ALIAS }}
+          RELEASE_KEY_PASSWORD_SECRET: ${{ secrets.RELEASE_KEY_PASSWORD }}
         run: |
-          echo "$RELEASE_KEYSTORE_BASE64" | base64 -d > release.keystore
-          echo "RELEASE_STORE_FILE=$(pwd)/release.keystore" >> "$GITHUB_ENV"
-          echo "RELEASE_STORE_PASSWORD=${{ secrets.RELEASE_STORE_PASSWORD }}" >> "$GITHUB_ENV"
-          echo "RELEASE_KEY_ALIAS=${{ secrets.RELEASE_KEY_ALIAS }}" >> "$GITHUB_ENV"
-          echo "RELEASE_KEY_PASSWORD=${{ secrets.RELEASE_KEY_PASSWORD }}" >> "$GITHUB_ENV"
+          if [ -n "$RELEASE_KEYSTORE_BASE64" ]; then
+            echo "🔐 تم العثور على أسرار التوقيع، سيتم بناء APK موقّع"
+            echo "$RELEASE_KEYSTORE_BASE64" | base64 -d > release.keystore
+            echo "RELEASE_STORE_FILE=$(pwd)/release.keystore" >> "$GITHUB_ENV"
+            echo "RELEASE_STORE_PASSWORD=$RELEASE_STORE_PASSWORD_SECRET" >> "$GITHUB_ENV"
+            echo "RELEASE_KEY_ALIAS=$RELEASE_KEY_ALIAS_SECRET" >> "$GITHUB_ENV"
+            echo "RELEASE_KEY_PASSWORD=$RELEASE_KEY_PASSWORD_SECRET" >> "$GITHUB_ENV"
+          else
+            echo "ℹ️ لا توجد أسرار توقيع، سيتم بناء APK غير موقّع (صالح للاختبار فقط)"
+          fi
 
       - name: Build release APK
         run: gradle assembleRelease --stacktrace
