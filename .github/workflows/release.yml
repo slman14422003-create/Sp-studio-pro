@@ -24,10 +24,14 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-          cache: gradle
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+      # المشروع لا يتضمن ملفات gradlew/gradlew.bat الثنائية، لذا يقوم هذا
+      # الإجراء الرسمي بتثبيت Gradle نفسه وإتاحته كأمر "gradle" مباشرة،
+      # بدلاً من الاعتماد على غلاف (wrapper) غير موجود في المستودع.
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'
 
       - name: Decode signing keystore (optional)
         if: ${{ secrets.RELEASE_KEYSTORE_BASE64 != '' }}
@@ -41,12 +45,16 @@ jobs:
           echo "RELEASE_KEY_PASSWORD=${{ secrets.RELEASE_KEY_PASSWORD }}" >> "$GITHUB_ENV"
 
       - name: Build release APK
-        run: ./gradlew assembleRelease --stacktrace
+        run: gradle assembleRelease --stacktrace
 
       - name: Locate APK
         id: apk
         run: |
           APK_PATH=$(find app/build/outputs/apk/release -name "*.apk" | head -n 1)
+          if [ -z "$APK_PATH" ]; then
+            echo "لم يتم العثور على ملف APK بعد البناء" >&2
+            exit 1
+          fi
           echo "path=$APK_PATH" >> "$GITHUB_OUTPUT"
 
       - name: Upload build artifact
