@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SP Studio Pro</string>
+
+    <!-- أوضاع البطاقة -->
+    <string name="mode_professional">مهني</string>
+    <string name="mode_compare">مقارنة</string>
+    <string name="mode_qa">سؤال وجواب</string>
+
+    <!-- عناصر البطاقة الافتراضية -->
+    <string name="default_title">الوضوح المهني</string>
+    <string name="default_body">• الوضوح في التشخيص يختصر الوقت.\n• الوضوح في النتائج يبني الثقة.\n• الوضوح في الخطة يضمن الالتزام.\n\nالوضوح هو مفتاح نجاح أي خطة علاجية ناجحة.</string>
+    <string name="default_dr_name">الإختصاصي سليمان</string>
+    <string name="default_dr_sub">أخصائي علاج فيزيائي وإعادة تأهيل</string>
+
+    <string name="prof_title">الحوار المهني المتقدم</string>
+    <string name="prof_body">• التشخيص الدقيق يعزز فعالية العلاج.\n• التواصل الواضح يبني ثقة المريض.\n• الخطط الشخصية تحقق نتائج ملموسة.</string>
+    <string name="prof_dr_name">د. سليمان الحربي</string>
+    <string name="prof_dr_sub">استشاري علاج طبيعي</string>
+
+    <string name="compare_title">المقارنة التفاعلية</string>
+    <string name="compare_dr_name">تحليل SP</string>
+    <string name="compare_dr_sub">رؤية موضوعية</string>
+
+    <string name="qa_title">سؤال وجواب</string>
+    <string name="qa_body">❓ س: كم جلسة أحتاج؟\n✅ ج: متوسط 8-12 جلسة.\n❓ س: هل العلاج مؤلم؟\n✅ ج: الجلسات مريحة تدريجياً.\n❓ س: متى تظهر النتائج؟\n✅ ج: تحسن ملحوظ خلال 3-4 أسابيع.</string>
+    <string name="qa_dr_name">الخدمة الذكية</string>
+    <string name="qa_dr_sub">إجابات شاملة</string>
+
+    <!-- شريط الأدوات -->
+    <string name="btn_save_png">📸 حفظ PNG</string>
+    <string name="btn_check_updates">🔄 تحديثات</string>
+    <string name="btn_help">❓ مساعدة</string>
+    <string name="btn_share">🔗 مشاركة</string>
+    <string name="btn_reset_all">⟳ إعادة ضبط الكل</string>
+    <string name="btn_colorize_on">🎨 تلوين مخصص</string>
+    <string name="btn_colorize_off">✅ إيقاف التلوين</string>
+    <string name="btn_reset_colors">♻️ إعادة الألوان</string>
+    <string name="btn_toggle_panel">⚙️ الخصائص</string>
+    <string name="btn_toggle_tools">🧠 أدوات</string>
+
+    <string name="label_aspect">📐 نسب الأبعاد</string>
+    <string name="label_text_editing">✍️ تحرير النصوص</string>
+    <string name="label_title_size">حجم العنوان</string>
+    <string name="label_body_size">حجم النص</string>
+    <string name="label_line_height">تباعد الأسطر</string>
+    <string name="label_font">الخط</string>
+    <string name="label_colors">🎨 الألوان</string>
+    <string name="label_ai_tools">🧠 أدوات ذكية</string>
+    <string name="hint_colorize">💡 فعّل \"تلوين مخصص\" ثم اضغط أي كلمة</string>
+    <string name="hint_compare_edit">💡 نصيحة: انقر على أي نص لتعديله مباشرة</string>
+
+    <string name="word_counter_format">📖 كلمات: %1$d | ~%2$d دقيقة</string>
+
+    <string name="comparison_title">📊 جدول المقارنة (إيجابيات بجانب سلبيات)</string>
+    <string name="pros_title">✅ الإيجابيات</string>
+    <string name="cons_title">⚠️ السلبيات</string>
+    <string name="add_pro">+ إضافة ميزة جديدة</string>
+    <string name="add_con">+ إضافة سلبية جديدة</string>
+    <string name="new_pro_item">ميزة جديدة</string>
+    <string name="new_con_item">سلبية جديدة</string>
+
+    <string name="hint_title">عنوان البطاقة</string>
+    <string name="hint_body">نص البطاقة</string>
+    <string name="hint_dr_name">اسم الأخصائي</string>
+    <string name="hint_dr_sub">التخصص</string>
+
+    <string name="toast_saved">✅ تم حفظ الصورة</string>
+    <string name="toast_save_failed">❌ فشل حفظ الصورة</string>
+    <string name="toast_reset_done">✅ إعادة ضبط كامل</string>
+    <string name="toast_colors_reset">♻️ تمت إعادة الألوان</string>
+    <string name="toast_checking_updates">🔄 جاري التحقق من التحديثات...</string>
+    <string name="toast_up_to_date">✅ أنت تستخدم أحدث إصدار</string>
+    <string name="toast_update_available">🔄 يتوفر إصدار جديد: %1$s</string>
+    <string name="toast_update_check_failed">⚠️ تعذر التحقق من التحديثات، تأكد من اتصالك بالإنترنت</string>
+
+    <string name="dialog_update_title">تحديث جديد متاح</string>
+    <string name="dialog_update_message">يتوفر إصدار جديد (%1$s). هل تريد فتح صفحة التحديث؟</string>
+    <string name="dialog_yes">فتح</string>
+    <string name="dialog_no">لاحقاً</string>
+
+    <string name="help_title">مساعدة</string>
+    <string name="help_body">SP Studio Pro تطبيق أصلي لتصميم بطاقات العلاج الطبيعي.\n\n• اختر الوضع (مهني / مقارنة / سؤال وجواب) من الأعلى.\n• عدّل النصوص مباشرة داخل البطاقة.\n• استخدم لوحة \"الخصائص\" لتغيير حجم الخط، تباعد الأسطر، ونوع الخط.\n• استخدم لوحة \"أدوات\" لتغيير الألوان أو تلوين كلمات محددة.\n• اضغط \"حفظ PNG\" لتصدير البطاقة كصورة ومشاركتها.</string>
+
+    <string name="color_dot_desc">اختيار اللون</string>
+    <string name="delete_item_desc">حذف العنصر</string>
+</resources>

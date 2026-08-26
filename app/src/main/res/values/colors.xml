@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_top">#0A0F2A</color>
+    <color name="bg_bottom">#020617</color>
+    <color name="glass_navbar">#990A1423</color>
+    <color name="glass_panel">#B30C1423</color>
+    <color name="glass_stroke">#26FFFFFF</color>
+    <color name="glass_btn">#1AFFFFFF</color>
+
+    <color name="accent_blue">#3B82F6</color>
+    <color name="accent_purple">#8B5CF6</color>
+    <color name="accent_green">#10B981</color>
+    <color name="accent_green_dark">#059669</color>
+    <color name="accent_red">#EF4444</color>
+    <color name="accent_amber">#F59E0B</color>
+    <color name="accent_pink">#EC489A</color>
+    <color name="accent_cyan">#06B6D4</color>
+
+    <color name="card_white">#FFFFFF</color>
+    <color name="title_dark">#1E293B</color>
+    <color name="body_dark">#1E293B</color>
+    <color name="dr_name_dark">#0F172A</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="text_light">#E2E8F0</color>
+    <color name="text_muted">#94A3B8</color>
+    <color name="danger_bg">#4DEF4444</color>
+</resources>
