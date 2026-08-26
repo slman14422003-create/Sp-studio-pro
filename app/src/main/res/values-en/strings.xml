@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SP Studio Pro</string>
+
+    <string name="mode_professional">Professional</string>
+    <string name="mode_compare">Comparison</string>
+    <string name="mode_qa">Q &amp; A</string>
+
+    <string name="default_title">Clarity First</string>
+    <string name="default_body">• Clarity in diagnosis saves time.\n• Clarity in results builds trust.\n• Clarity in the plan ensures commitment.\n\nClarity is the key to any successful treatment plan.</string>
+    <string name="default_dr_name">Specialist Suleiman</string>
+    <string name="default_dr_sub">Physical Therapy &amp; Rehabilitation Specialist</string>
+
+    <string name="prof_title">Advanced Professional Dialogue</string>
+    <string name="prof_body">• Accurate diagnosis improves treatment effectiveness.\n• Clear communication builds patient trust.\n• Personalized plans achieve tangible results.</string>
+    <string name="prof_dr_name">Dr. Suleiman Al-Harbi</string>
+    <string name="prof_dr_sub">Physical Therapy Consultant</string>
+
+    <string name="compare_title">Interactive Comparison</string>
+    <string name="compare_dr_name">SP Analysis</string>
+    <string name="compare_dr_sub">Objective View</string>
+
+    <string name="qa_title">Q &amp; A</string>
+    <string name="qa_body">❓ Q: How many sessions do I need?\n✅ A: 8-12 sessions on average.\n❓ Q: Is the treatment painful?\n✅ A: Sessions are gradually comfortable.\n❓ Q: When do results appear?\n✅ A: Noticeable improvement within 3-4 weeks.</string>
+    <string name="qa_dr_name">Smart Service</string>
+    <string name="qa_dr_sub">Comprehensive Answers</string>
+
+    <string name="btn_save_png">📸 Save PNG</string>
+    <string name="btn_check_updates">🔄 Updates</string>
+    <string name="btn_help">❓ Help</string>
+    <string name="btn_share">🔗 Share</string>
+    <string name="btn_reset_all">⟳ Reset All</string>
+    <string name="btn_colorize_on">🎨 Custom Colors</string>
+    <string name="btn_colorize_off">✅ Stop Coloring</string>
+    <string name="btn_reset_colors">♻️ Reset Colors</string>
+    <string name="btn_toggle_panel">⚙️ Properties</string>
+    <string name="btn_toggle_tools">🧠 Tools</string>
+
+    <string name="label_aspect">📐 Aspect Ratio</string>
+    <string name="label_text_editing">✍️ Text Editing</string>
+    <string name="label_title_size">Title Size</string>
+    <string name="label_body_size">Body Size</string>
+    <string name="label_line_height">Line Height</string>
+    <string name="label_font">Font</string>
+    <string name="label_colors">🎨 Colors</string>
+    <string name="label_ai_tools">🧠 Smart Tools</string>
+    <string name="hint_colorize">💡 Enable "Custom Colors" then tap any word</string>
+    <string name="hint_compare_edit">💡 Tip: tap any text to edit it directly</string>
+
+    <string name="word_counter_format">📖 Words: %1$d | ~%2$d min</string>
+
+    <string name="comparison_title">📊 Comparison Table (Pros next to Cons)</string>
+    <string name="pros_title">✅ Pros</string>
+    <string name="cons_title">⚠️ Cons</string>
+    <string name="add_pro">+ Add a new pro</string>
+    <string name="add_con">+ Add a new con</string>
+    <string name="new_pro_item">New advantage</string>
+    <string name="new_con_item">New disadvantage</string>
+
+    <string name="hint_title">Card title</string>
+    <string name="hint_body">Card text</string>
+    <string name="hint_dr_name">Specialist name</string>
+    <string name="hint_dr_sub">Specialty</string>
+
+    <string name="toast_saved">✅ Image saved</string>
+    <string name="toast_save_failed">❌ Failed to save image</string>
+    <string name="toast_reset_done">✅ Full reset done</string>
+    <string name="toast_colors_reset">♻️ Colors reset</string>
+    <string name="toast_checking_updates">🔄 Checking for updates...</string>
+    <string name="toast_up_to_date">✅ You are on the latest version</string>
+    <string name="toast_update_available">🔄 New version available: %1$s</string>
+    <string name="toast_update_check_failed">⚠️ Could not check for updates, check your connection</string>
+
+    <string name="dialog_update_title">Update available</string>
+    <string name="dialog_update_message">A new version is available (%1$s). Open the release page?</string>
+    <string name="dialog_yes">Open</string>
+    <string name="dialog_no">Later</string>
+
+    <string name="help_title">Help</string>
+    <string name="help_body">SP Studio Pro is a native app for designing physical-therapy cards.\n\n• Choose a mode (Professional / Comparison / Q&amp;A) from the top bar.\n• Edit the text directly inside the card.\n• Use the "Properties" panel to change font size, line height, and font family.\n• Use the "Tools" panel to change colors or colorize individual words.\n• Tap "Save PNG" to export the card as an image and share it.</string>
+
+    <string name="color_dot_desc">Choose color</string>
+    <string name="delete_item_desc">Delete item</string>
+</resources>
