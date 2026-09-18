@@ -1,6 +1,8 @@
 package com.spstudio.pro;
 
 import android.Manifest;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
@@ -17,6 +19,7 @@ import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -68,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
             "Reem Kufi", "Changa", "Sans Serif", "Serif", "Monospace"
     };
 
+    /** start = يمين بالعربي (RTL)، end = يسار. */
+    private static final String[] ALIGN_VALUES = {"start", "center", "end"};
+    private static final int[] QUALITY_VALUES = {1, 2, 3};
+
     private ActivityMainBinding binding;
     private CardState state;
 
@@ -100,13 +107,18 @@ public class MainActivity extends AppCompatActivity {
         buildModeButtons();
         buildAspectButtons();
         buildColorDots();
+        buildAlignButtons();
+        buildQualityButtons();
         setupFontSpinner();
         setupSliders();
         setupTextWatchers();
         setupButtons();
 
+        binding.labelAppVersion.setText(
+                getString(R.string.label_app_version_format, BuildConfig.VERSION_NAME));
+
         applyStateToViews();
-        binding.statusBar.setText("✅ التطبيق جاهز | SP Studio Pro (Android)");
+        binding.statusBar.setText(getString(R.string.status_ready));
     }
 
     // ========================= بناء عناصر الواجهة الديناميكية =========================
@@ -178,6 +190,95 @@ public class MainActivity extends AppCompatActivity {
             dot.setContentDescription(getString(R.string.color_dot_desc));
             dot.setOnClickListener(v -> applyTheme(color));
             binding.colorGrid.addView(dot);
+        }
+    }
+
+    private void buildAlignButtons() {
+        binding.alignRow.removeAllViews();
+        String[] labels = {
+                getString(R.string.align_right),
+                getString(R.string.align_center),
+                getString(R.string.align_left)
+        };
+        for (int i = 0; i < ALIGN_VALUES.length; i++) {
+            String value = ALIGN_VALUES[i];
+            TextView btn = new TextView(this);
+            btn.setText(labels[i]);
+            btn.setTag(value);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            lp.setMarginEnd(dp(6));
+            btn.setLayoutParams(lp);
+            btn.setPadding(dp(14), dp(7), dp(14), dp(7));
+            btn.setTextColor(getColor(R.color.white));
+            btn.setTextSize(11);
+            btn.setOnClickListener(v -> {
+                state.bodyAlign = value;
+                applyBodyAlignment();
+                highlightAlignButtons();
+                scheduleSave();
+            });
+            binding.alignRow.addView(btn);
+        }
+    }
+
+    private void highlightAlignButtons() {
+        for (int i = 0; i < binding.alignRow.getChildCount(); i++) {
+            TextView btn = (TextView) binding.alignRow.getChildAt(i);
+            boolean active = state.bodyAlign.equals(btn.getTag());
+            btn.setBackgroundResource(active ? R.drawable.bg_pill_primary : R.drawable.bg_glass_pill);
+        }
+    }
+
+    private void applyBodyAlignment() {
+        int gravity;
+        switch (state.bodyAlign) {
+            case "center":
+                gravity = Gravity.TOP | Gravity.CENTER_HORIZONTAL;
+                break;
+            case "end":
+                gravity = Gravity.TOP | Gravity.END;
+                break;
+            default:
+                gravity = Gravity.TOP | Gravity.START;
+        }
+        binding.bodyEdit.setGravity(gravity);
+        binding.bodyColorized.setGravity(gravity);
+    }
+
+    private void buildQualityButtons() {
+        binding.qualityRow.removeAllViews();
+        String[] labels = {
+                getString(R.string.quality_standard),
+                getString(R.string.quality_hd),
+                getString(R.string.quality_ultra)
+        };
+        for (int i = 0; i < QUALITY_VALUES.length; i++) {
+            int value = QUALITY_VALUES[i];
+            TextView btn = new TextView(this);
+            btn.setText(labels[i]);
+            btn.setTag(value);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            lp.setMarginEnd(dp(6));
+            btn.setLayoutParams(lp);
+            btn.setPadding(dp(14), dp(7), dp(14), dp(7));
+            btn.setTextColor(getColor(R.color.white));
+            btn.setTextSize(11);
+            btn.setOnClickListener(v -> {
+                state.exportScale = value;
+                highlightQualityButtons();
+                scheduleSave();
+            });
+            binding.qualityRow.addView(btn);
+        }
+    }
+
+    private void highlightQualityButtons() {
+        for (int i = 0; i < binding.qualityRow.getChildCount(); i++) {
+            TextView btn = (TextView) binding.qualityRow.getChildAt(i);
+            boolean active = state.exportScale == (Integer) btn.getTag();
+            btn.setBackgroundResource(active ? R.drawable.bg_pill_primary : R.drawable.bg_glass_pill);
         }
     }
 
@@ -291,14 +392,22 @@ public class MainActivity extends AppCompatActivity {
     private void setupButtons() {
         binding.btnSavePng.setOnClickListener(v -> exportImage(false));
         binding.btnCheckUpdates.setOnClickListener(v -> checkForUpdates());
-        binding.btnHelp.setOnClickListener(v -> startActivity(new Intent(this, HelpActivity.class)));
-        binding.btnShare.setOnClickListener(v -> exportImage(true));
+        binding.btnHelp.setOnClickListener(v -> toggleVisibility(binding.helpPanel));
+        binding.btnShare.setOnClickListener(v -> toggleVisibility(binding.sharePanel));
         binding.btnTogglePanel.setOnClickListener(v -> toggleVisibility(binding.smartPanel));
         binding.btnToggleTools.setOnClickListener(v -> toggleVisibility(binding.toolsPanel));
 
         binding.btnColorize.setOnClickListener(v -> toggleColorize());
         binding.btnResetColors.setOnClickListener(v -> resetWordColors());
         binding.btnResetAll.setOnClickListener(v -> fullReset());
+        binding.btnBoldToggle.setOnClickListener(v -> toggleBold());
+
+        binding.btnWatermarkToggle.setOnClickListener(v -> toggleWatermark());
+        binding.btnShareNow.setOnClickListener(v -> exportImage(true));
+        binding.btnCopyText.setOnClickListener(v -> copyCardTextToClipboard());
+
+        binding.btnOpenFullGuide.setOnClickListener(v -> startActivity(new Intent(this, HelpActivity.class)));
+        binding.btnCheckUpdatesHelp.setOnClickListener(v -> checkForUpdates());
 
         binding.addProsBtn.setOnClickListener(v -> {
             state.pros.add(getString(R.string.new_pro_item));
@@ -369,6 +478,14 @@ public class MainActivity extends AppCompatActivity {
         highlightAspectButtons();
         highlightModeButtons();
 
+        applyBodyAlignment();
+        highlightAlignButtons();
+        highlightQualityButtons();
+        binding.btnBoldToggle.setText(state.bodyBold ? R.string.btn_bold_off : R.string.btn_bold_on);
+        binding.btnWatermarkToggle.setText(
+                state.showWatermark ? R.string.btn_watermark_hide : R.string.btn_watermark_show);
+        binding.logoIcon.setVisibility(state.showWatermark ? View.VISIBLE : View.GONE);
+
         boolean isCompare = CardState.MODE_COMPARE.equals(state.mode);
         binding.comparisonContainer.setVisibility(isCompare ? View.VISIBLE : View.GONE);
         if (isCompare) {
@@ -427,9 +544,10 @@ public class MainActivity extends AppCompatActivity {
                 // إلى أن تُضاف ملفات .ttf الفعلية ضمن res/font (راجع ملف README).
                 tf = Typeface.DEFAULT;
         }
+        int bodyStyle = state.bodyBold ? Typeface.BOLD : Typeface.NORMAL;
         binding.titleEdit.setTypeface(tf, Typeface.BOLD);
-        binding.bodyEdit.setTypeface(tf);
-        binding.bodyColorized.setTypeface(tf);
+        binding.bodyEdit.setTypeface(tf, bodyStyle);
+        binding.bodyColorized.setTypeface(tf, bodyStyle);
         binding.drNameEdit.setTypeface(tf, Typeface.BOLD);
         binding.drSubEdit.setTypeface(tf, Typeface.BOLD);
     }
@@ -498,6 +616,42 @@ public class MainActivity extends AppCompatActivity {
         scheduleSave();
     }
 
+    private void toggleBold() {
+        state.bodyBold = !state.bodyBold;
+        applyFont();
+        binding.btnBoldToggle.setText(state.bodyBold ? R.string.btn_bold_off : R.string.btn_bold_on);
+        scheduleSave();
+    }
+
+    private void toggleWatermark() {
+        state.showWatermark = !state.showWatermark;
+        binding.logoIcon.setVisibility(state.showWatermark ? View.VISIBLE : View.GONE);
+        binding.btnWatermarkToggle.setText(
+                state.showWatermark ? R.string.btn_watermark_hide : R.string.btn_watermark_show);
+        scheduleSave();
+    }
+
+    private void copyCardTextToClipboard() {
+        StringBuilder sb = new StringBuilder();
+        if (state.title != null && !state.title.isEmpty()) {
+            sb.append(state.title).append("\n\n");
+        }
+        if (CardState.MODE_COMPARE.equals(state.mode)) {
+            sb.append(getString(R.string.pros_title)).append("\n");
+            for (String p : state.pros) sb.append("• ").append(p).append("\n");
+            sb.append("\n").append(getString(R.string.cons_title)).append("\n");
+            for (String c : state.cons) sb.append("• ").append(c).append("\n");
+        } else if (state.body != null) {
+            sb.append(state.body);
+        }
+
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        if (clipboard != null) {
+            clipboard.setPrimaryClip(ClipData.newPlainText(getString(R.string.app_name), sb.toString().trim()));
+            toast(getString(R.string.toast_text_copied));
+        }
+    }
+
     private void resetWordColors() {
         state.wordColors.clear();
         refreshBodyVisibility();
@@ -558,7 +712,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void scheduleSave() {
         if (pendingSave != null) debounceHandler.removeCallbacks(pendingSave);
-        pendingSave = () -> PrefsManager.save(this, state);
+        pendingSave = () -> {
+            PrefsManager.save(this, state);
+            String time = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+            binding.statusBar.setText(getString(R.string.status_autosaved_format, time));
+        };
         debounceHandler.postDelayed(pendingSave, 350);
     }
 
@@ -579,7 +737,7 @@ public class MainActivity extends AppCompatActivity {
         clearFocusAndHideKeyboard();
         binding.exportArea.post(() -> {
             try {
-                Bitmap bitmap = ImageExporter.renderViewToBitmap(binding.exportArea, 2f);
+                Bitmap bitmap = ImageExporter.renderViewToBitmap(binding.exportArea, (float) state.exportScale);
                 String fileName = "SP_Studio_" + new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date()) + ".png";
 
                 if (shareAfterExport) {
