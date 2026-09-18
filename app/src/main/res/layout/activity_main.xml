@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -422,6 +423,33 @@
 
                 <TextView
                     style="@style/PanelSectionLabel"
+                    android:text="@string/label_alignment" />
+
+                <LinearLayout
+                    android:id="@+id/alignRow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal" />
+
+                <TextView
+                    style="@style/PanelSectionLabel"
+                    android:text="@string/label_text_style" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/btnBoldToggle"
+                        style="@style/GlassPillButtonSmall"
+                        android:text="@string/btn_bold_on" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/PanelSectionLabel"
                     android:text="@string/label_ai_tools" />
 
                 <LinearLayout
@@ -470,6 +498,176 @@
                     android:text="@string/hint_colorize"
                     android:textColor="@color/text_light"
                     android:textSize="10sp" />
+            </LinearLayout>
+
+            <!-- لوحة المشاركة -->
+            <LinearLayout
+                android:id="@+id/sharePanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_panel_card"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/PanelSectionLabel"
+                    android:text="@string/label_share_panel" />
+
+                <TextView
+                    style="@style/PanelSectionLabel"
+                    android:text="@string/label_export_quality" />
+
+                <LinearLayout
+                    android:id="@+id/qualityRow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="14dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/SliderLabel"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/label_watermark" />
+
+                    <TextView
+                        android:id="@+id/btnWatermarkToggle"
+                        style="@style/GlassPillButtonSmall"
+                        android:text="@string/btn_watermark_hide" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/btnShareNow"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        style="@style/GlassPillButtonSmall"
+                        android:background="@drawable/bg_pill_primary"
+                        android:text="@string/btn_share_now" />
+
+                    <TextView
+                        android:id="@+id/btnCopyText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        style="@style/GlassPillButtonSmall"
+                        android:text="@string/btn_copy_text" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:alpha="0.7"
+                    android:gravity="center"
+                    android:text="@string/hint_share"
+                    android:textColor="@color/text_light"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <!-- لوحة المساعدة -->
+            <LinearLayout
+                android:id="@+id/helpPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_panel_card"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/PanelSectionLabel"
+                    android:text="@string/label_help_panel" />
+
+                <TextView
+                    android:id="@+id/helpQuick1"
+                    style="@style/SliderLabel"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="8dp"
+                    android:textSize="12sp"
+                    android:text="@string/help_quick_1" />
+
+                <TextView
+                    android:id="@+id/helpQuick2"
+                    style="@style/SliderLabel"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="8dp"
+                    android:textSize="12sp"
+                    android:text="@string/help_quick_2" />
+
+                <TextView
+                    android:id="@+id/helpQuick3"
+                    style="@style/SliderLabel"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="8dp"
+                    android:textSize="12sp"
+                    android:text="@string/help_quick_3" />
+
+                <TextView
+                    android:id="@+id/helpQuick4"
+                    style="@style/SliderLabel"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="8dp"
+                    android:textSize="12sp"
+                    android:text="@string/help_quick_4" />
+
+                <TextView
+                    android:id="@+id/helpQuick5"
+                    style="@style/SliderLabel"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="12dp"
+                    android:textSize="12sp"
+                    android:text="@string/help_quick_5" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/btnOpenFullGuide"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        style="@style/GlassPillButtonSmall"
+                        android:text="@string/btn_open_full_guide" />
+
+                    <TextView
+                        android:id="@+id/btnCheckUpdatesHelp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        style="@style/GlassPillButtonSmall"
+                        android:text="@string/btn_check_updates" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/labelAppVersion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:alpha="0.7"
+                    android:gravity="center"
+                    android:textColor="@color/text_light"
+                    android:textSize="10sp"
+                    tools:text="SP Studio Pro — الإصدار 1.0.0" />
             </LinearLayout>
 
             <!-- شريط الحالة -->
