@@ -47,6 +47,44 @@
     <string name="hint_colorize">💡 Enable "Custom Colors" then tap any word</string>
     <string name="hint_compare_edit">💡 Tip: tap any text to edit it directly</string>
 
+    <!-- Text alignment and style (Tools panel) -->
+    <string name="label_alignment">↔️ Text Alignment</string>
+    <string name="align_right">Right</string>
+    <string name="align_center">Center</string>
+    <string name="align_left">Left</string>
+    <string name="label_text_style">🔤 Text Style</string>
+    <string name="btn_bold_on">🔤 Bold Text</string>
+    <string name="btn_bold_off">🔤 Regular Text</string>
+
+    <!-- Share panel -->
+    <string name="label_share_panel">🔗 Share Options</string>
+    <string name="label_export_quality">🖼️ Export Quality</string>
+    <string name="quality_standard">Standard</string>
+    <string name="quality_hd">High HD</string>
+    <string name="quality_ultra">Ultra</string>
+    <string name="label_watermark">Watermark (SP)</string>
+    <string name="btn_watermark_show">👁️ Show Watermark</string>
+    <string name="btn_watermark_hide">🚫 Hide Watermark</string>
+    <string name="btn_share_now">🔗 Share Now</string>
+    <string name="btn_copy_text">📋 Copy Text</string>
+    <string name="hint_share">💡 Pick a quality, then tap "Share Now" or "Save PNG"</string>
+
+    <!-- Help panel -->
+    <string name="label_help_panel">❓ Quick Guide</string>
+    <string name="help_quick_1">🔀 Choose a mode (Professional / Comparison / Q&amp;A) from the top bar</string>
+    <string name="help_quick_2">✏️ Tap any text inside the card to edit it directly</string>
+    <string name="help_quick_3">⚙️ Open "Properties" to set font size, spacing, font family and aspect ratio</string>
+    <string name="help_quick_4">🧠 Open "Tools" to change colors, alignment, weight, and colorize words</string>
+    <string name="help_quick_5">🔗 Open "Share" to pick export quality before saving or sending</string>
+    <string name="btn_open_full_guide">📖 Open Full Guide</string>
+    <string name="label_app_version_format">SP Studio Pro — Version %1$s</string>
+
+    <!-- Status bar -->
+    <string name="status_ready">✅ App ready</string>
+    <string name="status_autosaved_format">💾 Autosaved — %1$s</string>
+
+    <string name="toast_text_copied">📋 Card text copied</string>
+
     <string name="word_counter_format">📖 Words: %1$d | ~%2$d min</string>
 
     <string name="comparison_title">📊 Comparison Table (Pros next to Cons)</string>
