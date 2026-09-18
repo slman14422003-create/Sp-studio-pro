@@ -50,6 +50,44 @@
     <string name="hint_colorize">💡 فعّل \"تلوين مخصص\" ثم اضغط أي كلمة</string>
     <string name="hint_compare_edit">💡 نصيحة: انقر على أي نص لتعديله مباشرة</string>
 
+    <!-- محاذاة ونمط النص (لوحة الأدوات) -->
+    <string name="label_alignment">↔️ محاذاة النص</string>
+    <string name="align_right">يمين</string>
+    <string name="align_center">وسط</string>
+    <string name="align_left">يسار</string>
+    <string name="label_text_style">🔤 نمط النص</string>
+    <string name="btn_bold_on">🔤 نص عريض</string>
+    <string name="btn_bold_off">🔤 نص عادي</string>
+
+    <!-- لوحة المشاركة -->
+    <string name="label_share_panel">🔗 خيارات المشاركة</string>
+    <string name="label_export_quality">🖼️ جودة التصدير</string>
+    <string name="quality_standard">عادية</string>
+    <string name="quality_hd">عالية HD</string>
+    <string name="quality_ultra">فائقة Ultra</string>
+    <string name="label_watermark">الشعار المائي (SP)</string>
+    <string name="btn_watermark_show">👁️ إظهار الشعار</string>
+    <string name="btn_watermark_hide">🚫 إخفاء الشعار</string>
+    <string name="btn_share_now">🔗 مشاركة الآن</string>
+    <string name="btn_copy_text">📋 نسخ النص</string>
+    <string name="hint_share">💡 اختر الجودة المناسبة، ثم اضغط \"مشاركة الآن\" أو \"حفظ PNG\"</string>
+
+    <!-- لوحة المساعدة -->
+    <string name="label_help_panel">❓ دليل الاستخدام السريع</string>
+    <string name="help_quick_1">🔀 اختر الوضع (مهني / مقارنة / سؤال وجواب) من الأعلى</string>
+    <string name="help_quick_2">✏️ اضغط على أي نص داخل البطاقة لتحريره مباشرة</string>
+    <string name="help_quick_3">⚙️ افتح \"الخصائص\" لضبط حجم الخط والتباعد ونوع الخط ونسبة الأبعاد</string>
+    <string name="help_quick_4">🧠 افتح \"أدوات\" لتغيير الألوان والمحاذاة والسماكة وتلوين كلمات محددة</string>
+    <string name="help_quick_5">🔗 افتح \"مشاركة\" لاختيار جودة التصدير قبل الحفظ أو الإرسال</string>
+    <string name="btn_open_full_guide">📖 فتح الدليل الكامل</string>
+    <string name="label_app_version_format">SP Studio Pro — الإصدار %1$s</string>
+
+    <!-- شريط الحالة -->
+    <string name="status_ready">✅ التطبيق جاهز</string>
+    <string name="status_autosaved_format">💾 تم الحفظ التلقائي — %1$s</string>
+
+    <string name="toast_text_copied">📋 تم نسخ نص البطاقة</string>
+
     <string name="word_counter_format">📖 كلمات: %1$d | ~%2$d دقيقة</string>
 
     <string name="comparison_title">📊 جدول المقارنة (إيجابيات بجانب سلبيات)</string>
