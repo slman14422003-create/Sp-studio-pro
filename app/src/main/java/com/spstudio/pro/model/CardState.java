@@ -52,6 +52,15 @@ public class CardState {
     public List<String> pros = new ArrayList<>();
     public List<String> cons = new ArrayList<>();
 
+    /** محاذاة نص البطاقة: start (يمين بالعربي)، center، end (يسار بالعربي). */
+    public String bodyAlign = "start";
+    /** هل نص البطاقة عريض (Bold) أم عادي. */
+    public boolean bodyBold = false;
+    /** هل يظهر شعار "SP" الصغير أسفل يمين البطاقة. */
+    public boolean showWatermark = true;
+    /** مضاعف دقة تصدير الصورة: 1 عادية، 2 عالية (افتراضي)، 3 فائقة. */
+    public int exportScale = 2;
+
     public CardState() {
     }
 
@@ -73,6 +82,10 @@ public class CardState {
         s.wordColors = new LinkedHashMap<>();
         s.pros = defaultPros(ctx);
         s.cons = defaultCons(ctx);
+        s.bodyAlign = "start";
+        s.bodyBold = false;
+        s.showWatermark = true;
+        s.exportScale = 2;
         return s;
     }
 
@@ -143,6 +156,11 @@ public class CardState {
 
             o.put("pros", new JSONArray(pros));
             o.put("cons", new JSONArray(cons));
+
+            o.put("bodyAlign", bodyAlign);
+            o.put("bodyBold", bodyBold);
+            o.put("showWatermark", showWatermark);
+            o.put("exportScale", exportScale);
         } catch (JSONException ignored) {
         }
         return o;
@@ -187,6 +205,11 @@ public class CardState {
         if (consArr != null) {
             for (int i = 0; i < consArr.length(); i++) s.cons.add(consArr.optString(i, ""));
         }
+
+        s.bodyAlign = o.optString("bodyAlign", "start");
+        s.bodyBold = o.optBoolean("bodyBold", false);
+        s.showWatermark = o.optBoolean("showWatermark", true);
+        s.exportScale = o.optInt("exportScale", 2);
 
         return s;
     }
